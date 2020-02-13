@@ -1,5 +1,6 @@
 package tech.zdev.packages.loading.packetloadingmanager.config;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,16 +13,16 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
-//import ch.qos.logback.classic.Level;
-//import ch.qos.logback.classic.Logger;
-//import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
 
 @Configuration
 @EnableMongoRepositories(basePackages = { "tech.zdev.packages.loading.packetloadingmanager.repository" })
 public class MongoConfig {
 	
-//	LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-//	Logger rootLogger = loggerContext.getLogger("org.mongodb.driver");
+	LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+	Logger rootLogger = loggerContext.getLogger("org.mongodb.driver");
 
 	@Value("${spring.data.mongodb.database}")
 	private String database;
@@ -29,9 +30,9 @@ public class MongoConfig {
 	@Value("${spring.data.mongodb.host}")
 	private String host;
 	
-//	public MongoConfig() {
-//		rootLogger.setLevel(Level.OFF);
-//	}
+	public MongoConfig() {
+		rootLogger.setLevel(Level.OFF);
+	}
 
 	@Bean
 	public MongoClient mongoClient() {
