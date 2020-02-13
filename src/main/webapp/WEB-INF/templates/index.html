@@ -119,16 +119,16 @@
 		      </tr>
 		    </thead>
 		    <tbody id="idTbody">
-		      <tr th:each="sb : ${packageInfo.segmentsUtil}">
-		        <td th:text="${sb.airline.code}">AV</td>
-		        <td th:text="${sb.flightNumber}">1243</td>
-		        <td th:text="${sb.airportOrigin.codeIATA}">AV</td>
-		        <td th:text="${sb.departureDate}">09/04/2020</td>
-		        <td th:text="${sb.departureTime}">11:40</td>
-		        <td th:text="${sb.airportDestination.codeIATA}">LA</td>
-		        <td th:text="${sb.arrivalDate}">19/04/2020</td>
-		        <td th:text="${sb.arrivalTime}">18:00</td>
-		        <td th:text="${sb.Indicator}">OW</td>
+		      <tr th:each="object, ite : ${packageInfo.segmentsUtil}">
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].airline.code}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].airline.code}"/></td>
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].flightNumber}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].flightNumber}"/></td>
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].airportOrigin.codeIATA}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].airportOrigin.codeIATA}"/></td>
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].departureDate}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].departureDate}"/></td>
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].departureTime}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].departureTime}"/></td>
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].airportDestination.codeIATA}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].airportDestination.codeIATA}"/></td>
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].arrivalDate}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].arrivalDate}"/></td>
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].arrivalTime}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].arrivalTime}"/></td>
+		      	<td><label th:text="*{segmentsUtil[__${ite.index}__].Indicator}"></label><input type="hidden" th:field="*{segmentsUtil[__${ite.index}__].Indicator}"/></td>
 		      </tr>
 		    </tbody>
 		  </table>
