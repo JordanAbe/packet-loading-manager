@@ -11,6 +11,10 @@ public class Airport {
 	private ObjectId id;
 	private String codeIATA;
 	
+	public Airport() {
+		super();
+	}
+
 	public Airport(String codeIATA) {
 		super();
 		this.codeIATA = codeIATA;

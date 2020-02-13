@@ -25,6 +25,11 @@ public class Segment {
 	@DBRef
 	private Airport airportDestination;
 	
+	
+	public Segment() {
+		super();
+	}
+	
 	public Segment(String departureDate, String departureTime, String arrivalDate, String arrivalTime,
 			String flightNumber, Airline airline, Airport airportOrigin, Airport airportDestination) {
 		super();

@@ -30,7 +30,7 @@ public class PackageInfo {
 	private Category category;
 	@DBRef
 	private List<Flight> flights;
-	@Transient
+//	@Transient
 	private List<Segment> segmentsUtil;
 	@DBRef
 	private Hotel hotel;
