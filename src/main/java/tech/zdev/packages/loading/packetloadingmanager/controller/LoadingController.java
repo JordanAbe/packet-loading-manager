@@ -31,7 +31,7 @@ public class LoadingController {
 		System.out.println("****** find " + code);
 		PackageInfo paquete = paqueteService.findByCode(code);
 		model.addAttribute("packageInfo", paquete);
-		return "index";
+		return "form";
 	}
 
 	@GetMapping("/packagess/{code}")

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	
 	$('#addOptionalServiceClass').on('click', function() {
-//        if ($('#optionalServiceClass').val().length == 1) {
+// if ($('#optionalServiceClass').val().length == 1) {
             var optionalServiceClass = $('<div>',{
                 class: 'btn btn-outline-success btn-sm m-1',
                 style: 'min-width: 64px;'
@@ -19,7 +19,7 @@ $(document).ready(function () {
                 value: $('#optionalServiceClass').val()
             }))
             $('#optionalServicesClass').append(optionalServiceClass)
-//        }
+// }
     });
     $(document).on('click', '.removeOptionalServiceClass', function() {
         $(this).closest('.btn').remove()
@@ -28,18 +28,17 @@ $(document).ready(function () {
     $('#idAddSegment').on('click', function() {
         var newIndex = $('#idTbody').prop('childElementCount'); + 1;
         var tr = $('<tr>',{
-            class: '',
-            style: ''
+            class: ''
         })
-        tr.append(buildCol($('#idAirline').val(), newIndex, 'airline.code'));
-        tr.append(buildCol($('#idFlightNumber').val(), newIndex, 'flightNumber'));
-        tr.append(buildCol($('#idAirportOrigin').val(), newIndex, 'airportOrigin.codeIATA'));
-        tr.append(buildCol($('#idDepartureDate').val(), newIndex, 'departureDate'));
-        tr.append(buildCol($('#idDepartureTime').val(), newIndex, 'departureTime'));
-        tr.append(buildCol($('#idAirportDestination').val(), newIndex, 'airportDestination.codeIATA'));
-        tr.append(buildCol($('#idArrivalDate').val(), newIndex, 'arrivalDate'));
-        tr.append(buildCol($('#idArrivalTime').val(), newIndex, 'arrivalTime'));
-        tr.append(buildCol($('#idIndicator').val(), newIndex, 'Indicator'));
+        tr.append(buildCol('', newIndex, 'airline.code'));
+        tr.append(buildCol('', newIndex, 'flightNumber'));
+        tr.append(buildCol('', newIndex, 'airportOrigin.codeIATA'));
+        tr.append(buildCol('', newIndex, 'departureDate'));
+        tr.append(buildCol('', newIndex, 'departureTime'));
+        tr.append(buildCol('', newIndex, 'airportDestination.codeIATA'));
+        tr.append(buildCol('', newIndex, 'arrivalDate'));
+        tr.append(buildCol('', newIndex, 'arrivalTime'));
+        tr.append(buildCol('', newIndex, 'Indicator'));
     	$('#idTbody').append(tr);
     });
 
@@ -47,23 +46,15 @@ $(document).ready(function () {
 
 function buildCol(value, index, sufijo){
     var td = $('<td>',{
-        class: '',
-        style: ''
-    })
-    var label = $('<label>',{
-        class: '',
-        style: '',
-        text: '' + value
+        class: 'column-separate'
     })
     var input = $('<input>',{
-        class: '',
-        style: '',
-        type: 'hidden',
+        class: 'box-table',
+        type: 'text',
         id: 'segmentsUtil' + index + '.' + sufijo,
         name: 'segmentsUtil[' + index + '].' + sufijo,
-        value: '' + value
+        value: ''
     })
-    td.append(label)
     td.append(input)
     return td;
 }

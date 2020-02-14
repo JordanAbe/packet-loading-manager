@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <title>Packetes</title>
+</head>
+
+<body>
+    <div class="container">
+        <form id="form" action="/packages" th:action="@{/packages}" th:object="${packageInfo}" method="post">
+
+            <div class="row">
+                <div class="col-12 col-lg-3 col-general">
+                    <div class="container-fluid">
+                        <div>
+                            <h2>Generales</h2>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Código</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{code}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Título</label>
+                            <div class="col-sm-9">
+                                <textarea rows="3" class="form-control" th:field="*{tittle}"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Subtítulo</label>
+                            <div class="col-sm-9">
+                                <textarea rows="3" class="form-control" th:field="*{subtittle}"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">tipo de viaje</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{typeOfTrip}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Stock</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{stock}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Condiciones generales</label>
+                                <textarea class="form-control d-inline" rows="6" th:field="*{availabityExtraInfo}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+					<div class="div-separate"></div>
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <div>
+                                <h2>Paquete Incluye</h2>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control form-control-sm" id="optionalServiceClass" placeholder="Ingrese las clases opcionales" aria-label="Ingrese las clases opcionales" aria-describedby="basic-addon2" onkeyup="this.value = this.value.toUpperCase()" onfocus="this.value=''" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-sm" id="addOptionalServiceClass" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="optionalServicesClass">
+                                <div class="btn btn-outline-success btn-sm m-1" th:each="cont : ${packageInfo.cont}">
+                                    <span th:text="${cont}" class="pr-1"></span><i class="fas fa-trash removeOptionalServiceClass"></i>
+                                    <input type="hidden" th:value="${cont}" name="cont" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<div class="div-separate"></div>
+                </div>
+                <div class="col-12 col-lg-9 col-details">
+                    <div class="container-fluid">
+                        <div>
+<!--                             <h2 class="subtitle-link">Segmentos</h2> -->
+                            <h2>Segmentos</h2>
+                        </div>
+                        <a id="idAddSegment" href="#">Agregar segmento</a>
+                        <div class="row">
+                        	<div class="col" >
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="column-separate">Ind(0,1)</th>
+                                        <th scope="col">Aerolinea</th>
+                                        <th scope="col"># Vuelo</th>
+                                        <th scope="col" class="column-separate">Aerop.
+                                            <br>origen</th>
+                                        <th scope="col">Fecha
+                                            <br>salida</th>
+                                        <th scope="col">Hora
+                                            <br>salida</th>
+                                        <th scope="col" class="column-separate">Aerop.
+                                            <br>destino</th>
+                                        <th scope="col">Fecha
+                                            <br>llegada</th>
+                                        <th scope="col">Hora
+                                            <br>llegada</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="idTbody">
+                                    <tr th:each="object, ite : ${packageInfo.segmentsUtil}">
+                                        <td class="column-separate">
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].Indicator}" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].airline.code}" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].flightNumber}" />
+                                        </td>
+                                        <td class="column-separate">
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].airportOrigin.codeIATA}" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].departureDate}" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].departureTime}" />
+                                        </td>
+                                        <td class="column-separate">
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].airportDestination.codeIATA}" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].arrivalDate}" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="box-table" th:field="*{segmentsUtil[__${ite.index}__].arrivalTime}" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+<div class="div-separate"></div>
+                    <div class="container-fluid">
+                        <div>
+                            <h2>Hotel</h2>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" th:field="*{hotel.name}" />
+                            </div>
+                            <div class="form-group col">
+                                <label>Tipo de habitación</label>
+                                <input type="text" class="form-control" th:field="*{hotel.roomtype}" />
+                            </div>
+                            <div class="form-group col">
+                                <label>Estrellas</label>
+                                <input type="text" class="form-control" th:field="*{hotel.ratingAward}" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Dirección</label>
+                                <input type="text" class="form-control" th:field="*{hotel.address}" />
+                            </div>
+                        </div>
+                    </div>
+<div class="div-separate"></div>
+                    <div class="container-fluid">
+                        <div>
+                            <h2>Duración de paquete</h2>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>code</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].code}" />
+                            </div>
+                            <div class="form-group col">
+                                <label>tour Id</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].tourId}" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Fecha Inicio de Tour</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].tourDate}" />
+                            </div>
+                            <div class="form-group col">
+                                <label>Fecha Fin de Tour</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].finalTourDate}" />
+                            </div>
+                            <div class="form-group col">
+                                <label>Días</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].durationDays}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-separate"></div>
+                    <div class="container-fluid">
+                        <div>
+                            <h2>Precios</h2>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Adultos USD</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].currencies[0].priceAdult}" />
+                            </div>
+                            <div class="form-group col">
+                                <label>Niños USD</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].currencies[0].priceChildren}" />
+                            </div>
+                            <div class="form-group col">
+                                <label>Adultos PEN</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].currencies[1].priceAdult}" />
+                            </div>
+                            <div class="form-group col">
+                                <label>Niños PEN</label>
+                                <input type="text" class="form-control" th:field="*{packageDate[0].currencies[1].priceChildren}" />
+                            </div>
+                        </div>
+                    </div>
+					<div class="div-separate"></div>
+                    <div class="container-fluid">
+                        <input type="submit" class="btn btn-primary" value="Grabar" />
+                        <a th:href="@{/packages}" class="btn btn-secondary">Listado</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script th:src="@{/js/packages.js}" type="text/javascript"></script>
+</body>
+
+</html>

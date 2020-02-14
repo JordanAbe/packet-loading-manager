@@ -1,15 +1,40 @@
-div .container-fluid{
-	border: 1px solid blue;
-	margin: 20px
-}
-div.row div{
-	border: 5px;
+.col-general, .col-details{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #ECF0F1;
 }
 
-textarea.fullwidth {
-    max-width:100%;
-    min-width:100%;
-    resize:vertical;
-    box-sizing:border-box;
-    margin:auto;
+.fullwidth {
+	max-width: 100%;
+	min-width: 100%;
+	resize: vertical;
+	box-sizing: border-box;
+	margin: auto;
+}
+
+.box-table {
+	width: 80px;
+	border: 0;
+}
+
+.subtitle-link {
+	display: inline;
+}
+
+.table td, .table th {
+	padding: .3rem;
+}
+
+tbody {
+	background-color: #ECF0F1;
+}
+
+.column-separate {
+	border-left: 1px solid #dee2e6;
+}
+
+.div-separate{
+	border-bottom: 3px solid #dee2e6;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
