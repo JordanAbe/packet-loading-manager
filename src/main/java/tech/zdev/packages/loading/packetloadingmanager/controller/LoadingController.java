@@ -26,18 +26,18 @@ public class LoadingController {
 		this.paqueteService = paqueteService;
 	}
 
+	@GetMapping("/packages")
+	public String getPacketes(Model model) {
+		model.addAttribute("packages", paqueteService.findAll());
+		return "list";
+	}
+	
 	@GetMapping("/packages/{code}")
 	public String getPackage(@PathVariable String code, Model model) {
 		System.out.println("****** find " + code);
 		PackageInfo paquete = paqueteService.findByCode(code);
 		model.addAttribute("packageInfo", paquete);
 		return "form";
-	}
-
-	@GetMapping("/packagess/{code}")
-	@ResponseBody
-	public PackageInfo getPackages(@PathVariable String code) {
-		return paqueteService.findByCode(code);
 	}
 	
 	@PostMapping("/packages")
