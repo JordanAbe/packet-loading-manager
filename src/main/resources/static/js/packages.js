@@ -3,7 +3,7 @@ $(document).ready(function () {
 	$('#addOptionalServiceClass').on('click', function() {
 // if ($('#optionalServiceClass').val().length == 1) {
             var optionalServiceClass = $('<div>',{
-                class: 'btn btn-outline-success btn-sm m-1',
+                class: 'btn btn-outline-success btn-sm m-1 w-100',
                 style: 'min-width: 64px;'
             })
             optionalServiceClass.append($('<span>',{
