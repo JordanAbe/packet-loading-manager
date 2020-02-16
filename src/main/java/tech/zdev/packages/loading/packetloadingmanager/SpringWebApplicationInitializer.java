@@ -5,9 +5,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import tech.zdev.packages.loading.packetloadingmanager.config.MvcConfig;
 import tech.zdev.packages.loading.packetloadingmanager.config.RootConfig;
 
-public class SpringInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	public SpringInitializer() {
+	public SpringWebApplicationInitializer() {
 //		System.setProperty("spring.profiles.active", "prod");
 		System.setProperty("ENV", "dev");
 	}
