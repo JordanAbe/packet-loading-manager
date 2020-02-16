@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/general.html :: head"></head>
+
+<body>
+
+    <div th:replace="fragments/general.html :: nav"></div>
+
+    <div class="container">
+        <form th:action="@{/login}" method="post">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-4">
+                    <div class="login">
+                        <div>
+                            <h2 class="text-center">Login</h2>
+                        </div>
+                        <div class="form-group" th:if="${error != null}">
+                            <div class="alert alert-danger">
+                                <label th:text="${message}"></label>
+                            </div>
+                        </div>
+                        <div class="form-group" th:if="${logout != null}">
+                            <div class="alert alert-primary">
+                                <label th:text="${message}"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Usuario</label>
+                            <input type="text" name="username" class="form-control" required autofocus />
+                        </div>
+                        <div class="form-group">
+                            <label>Clave</label>
+                            <input type="password" name="password" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Sign In" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div th:replace="fragments/general.html :: footer"></div>
+
+</body>
+
+</html>
