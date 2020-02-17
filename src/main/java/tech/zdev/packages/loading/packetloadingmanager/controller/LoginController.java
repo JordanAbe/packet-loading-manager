@@ -25,7 +25,7 @@ public class LoginController {
 		return "login";
 	}
 
-	@PostMapping("/home")
+	@GetMapping("/home")
 	public String loginProcess() {
 		return "home";
 	}

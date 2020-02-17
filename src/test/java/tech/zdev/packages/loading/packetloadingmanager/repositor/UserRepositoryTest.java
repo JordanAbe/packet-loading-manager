@@ -32,12 +32,12 @@ public class UserRepositoryTest {
 	@Autowired
 	UserRepository userRepository;
 
-	@Disabled
+//	@Disabled
 	@Test
 	public void shouldSaveUser() {
 		User user = new User();
-		user.setUsername("alex");
-		user.setClave(passwordEncoder.encode("666"));
+		user.setUsername("jordan");
+		user.setClave(passwordEncoder.encode("123"));
 		List<Rol> roles = new ArrayList<Rol>();
 		roles.add(new Rol("ADMIN"));
 		user.setRoles(roles);
