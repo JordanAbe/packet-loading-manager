@@ -3,6 +3,7 @@ package tech.zdev.packages.loading.packetloadingmanager.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -33,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .authorizeRequests()
           .mvcMatchers("/login"). permitAll()
           .mvcMatchers("/signup").permitAll()
-          .mvcMatchers("/packages/**").hasRole("ADMIN")
+          .mvcMatchers(HttpMethod.GET, "/packages/**").hasAnyAuthority("ADMIN,USER")
+          .mvcMatchers(HttpMethod.POST, "/packages/**").hasAuthority("ADMIN")
           .anyRequest().authenticated()
           .and()
           .formLogin()
@@ -47,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .logoutSuccessUrl("/login?logout=true")
           .deleteCookies("JSESSIONID");
 //          .logoutSuccessHandler(logoutSuccessHandler());
+//          .and().exceptionHandling().accessDeniedPage("/error/403");
     }
     
     @Override

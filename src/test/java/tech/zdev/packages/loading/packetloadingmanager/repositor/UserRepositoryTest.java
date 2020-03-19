@@ -36,10 +36,10 @@ public class UserRepositoryTest {
 	@Test
 	public void shouldSaveUser() {
 		User user = new User();
-		user.setUsername("jordan");
-		user.setClave(passwordEncoder.encode("123"));
+		user.setUsername("alex");
+		user.setClave(passwordEncoder.encode("456"));
 		List<Rol> roles = new ArrayList<Rol>();
-		roles.add(new Rol("ADMIN"));
+		roles.add(new Rol("USER"));
 		user.setRoles(roles);
 		User resolve = userRepository.save(user);
 		assertEquals(resolve.getClave(), user.getClave());
